@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="icon" type="image/png" th:href="@{/favicon.ico}" />
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+
+<div th:replace="~{navigation :: navi(Home)}" />
+
+<div class="container">
+    <h1>Welcome page</h1>
+
+    <div sec:authorize="isAuthenticated()">
+        Authenticated username:
+        <div sec:authentication="principal.username"></div>
+        Authenticated user roles:
+        <div sec:authentication="principal.authorities"></div>
+    </div>
+
+    <!--<div sec:authorize access="hasAnyRole('ADMIN', 'USER')">-->
+    <div sec:authorize="hasRole('ADMIN')">
+        This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
+    </div>
+
+    <h2>Index:</h2>
+    <br>
+    <a href="/app/students/list">Show students list</a>
+    <br>
+    <a href="/app/students/add">Add new student</a>
+    <button id="testBtn">Test</button>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+</body>
+</html>
